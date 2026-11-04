@@ -28,9 +28,10 @@ final List<Produk> daftarProdukDummy = [
     nama: 'Kopi Susu Gula Aren 250ml',
     kategori: 'Minuman',
     harga: 18000,
-    stok: 24, // Persediaan aman (> 5) -> Logika badge akan menampilkan warna hijau
+    stok: 24,
     gambarUrl:
         'https://images.unsplash.com/photo-1541167760496-1628856ab772?w=300',
+    diskonPersen: 20, // Menambahkan diskon promo 20% khusus produk ini (Live Tweak 3)
   ),
   const Produk(
     id: 2,
