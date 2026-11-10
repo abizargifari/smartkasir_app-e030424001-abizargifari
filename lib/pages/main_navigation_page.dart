@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Mengimpor halaman DashboardPage untuk ditampilkan pada tab menu pertama (Beranda)
-import 'dashboard_pages.dart';
+import 'dashboard_page.dart';
 
 // Komponen/Widget MainNavigationPage turunan StatefulWidget: Mengelola status tab menu yang aktif
 class MainNavigationPage extends StatefulWidget {

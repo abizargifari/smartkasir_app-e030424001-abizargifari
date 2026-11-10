@@ -1,4 +1,5 @@
 # Miscellaneous
+.documents/
 *.class
 *.log
 *.pyc
