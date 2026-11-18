@@ -25,7 +25,7 @@ class _FormKaryawanPageState extends State<FormKaryawanPage> {
 
   // Nilai terpilih dropdown peran
   String _peranTerpilih = 'Kasir';
-  final List<String> _daftarPeran = ['Kasir', 'Admin', 'Manajer'];
+  final List<String> _daftarPeran = ['Kasir', 'Admin', 'Manajer', 'Supervisor'];
 
   // Status visual tombol proses simpan
   bool _sedangMenyimpan = false;
@@ -137,7 +137,7 @@ class _FormKaryawanPageState extends State<FormKaryawanPage> {
                     const SizedBox(width: 12),
                     Expanded(
                       child: Text(
-                        'Setiap staf kasir memiliki PIN 4 digit untuk login shift penjualan.',
+                        'Setiap staf kasir memiliki PIN 6 digit untuk login shift penjualan.',
                         style: TextStyle(color: Colors.blue.shade900, fontSize: 12),
                       ),
                     ),
@@ -163,18 +163,18 @@ class _FormKaryawanPageState extends State<FormKaryawanPage> {
                 },
               ),
               const SizedBox(height: 16),
-              // 2. INPUT PIN KEAMANAN 4 DIGIT
+              // 2. INPUT PIN KEAMANAN 6 DIGIT
               TextFormField(
                 controller: _pinController,
                 keyboardType: TextInputType.number,
                 obscureText: true,
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly,
-                  LengthLimitingTextInputFormatter(4),
+                  LengthLimitingTextInputFormatter(6),
                 ],
                 decoration: InputDecoration(
-                  labelText: 'PIN Kasir (4 Digit Angka)',
-                  hintText: 'Contoh: 1234',
+                  labelText: 'PIN Kasir (6 Digit Angka)',
+                  hintText: 'Contoh: 123456',
                   prefixIcon: const Icon(Icons.lock_outline),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                   filled: true,
@@ -182,7 +182,7 @@ class _FormKaryawanPageState extends State<FormKaryawanPage> {
                 ),
                 validator: (val) {
                   if (val == null || val.trim().isEmpty) return 'PIN kasir wajib diisi!';
-                  if (val.trim().length != 4) return 'PIN kasir harus tepat 4 digit angka!';
+                  if (val.trim().length != 6) return 'PIN kasir harus tepat 6 digit angka!';
                   return null;
                 },
               ),
