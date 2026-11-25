@@ -1,6 +1,7 @@
 // Mengimpor antarmuka Flutter dan SharedPreferences
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../helpers/database_helper.dart';
 // Mengimpor halaman kelola karyawan untuk jalan pintas menu
 import 'kelola_karyawan_page.dart';
 import 'kelola_pelanggan_page.dart';
@@ -27,6 +28,9 @@ class _ProfilTokoPageState extends State<ProfilTokoPage> {
   // Nama kasir aktif yang sedang bertugas
   String _activeCashierName = 'Belum Ditentukan';
 
+  // Jumlah pelanggan terdaftar (Tantangan 3)
+  int _totalPelanggan = 0;
+
   @override
   void initState() {
     super.initState();
@@ -46,7 +50,9 @@ class _ProfilTokoPageState extends State<ProfilTokoPage> {
   // --- MEMBACA PENGATURAN TOKO DARI SHAREDPREFERENCES ---
   Future<void> _muatProfilToko() async {
     final prefs = await SharedPreferences.getInstance();
+    final count = await DatabaseHelper.instance.countPelanggan();
     setState(() {
+      _totalPelanggan = count;
       _namaTokoController.text = prefs.getString('nama_toko') ?? 'SmartKasir Poliban';
       _alamatController.text = prefs.getString('alamat_toko') ?? 'Jl. Brigjend H. Hasan Basry, Banjarmasin';
       _noWaController.text = prefs.getString('no_wa') ?? '081234567890';
@@ -172,18 +178,19 @@ class _ProfilTokoPageState extends State<ProfilTokoPage> {
                   'Data Pelanggan & Lokasi GPS',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
                 ),
-                subtitle: const Text(
-                  'Kelola member CRM dan navigasi rute pengantaran',
-                  style: TextStyle(fontSize: 12, color: Colors.grey),
+                subtitle: Text(
+                  '$_totalPelanggan Member Pelanggan Terdaftar',
+                  style: const TextStyle(fontSize: 12, color: Colors.grey),
                 ),
                 trailing: const Icon(Icons.chevron_right, color: Color(0xFF1E3A8A)),
-                onTap: () {
-                  Navigator.push(
+                onTap: () async {
+                  await Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const KelolaPelangganPage(),
                     ),
                   );
+                  _muatProfilToko();
                 },
               ),
             ),

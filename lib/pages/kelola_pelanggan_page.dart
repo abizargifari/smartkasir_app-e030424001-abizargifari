@@ -63,9 +63,9 @@ class _KelolaPelangganPageState extends State<KelolaPelangganPage> {
 
   // Fungsi membuka rute navigasi pengantaran ke aplikasi Google Maps luar
   Future<void> _bukaRuteGoogleMaps(double latitude, double longitude, String namaPelanggan) async {
-    // Membangun URL resmi Google Maps Directions API
+    // Membangun URL resmi Google Maps Directions API dengan moda motor (Tantangan 2)
     final url = Uri.parse(
-      'https://www.google.com/maps/dir/?api=1&destination=$latitude,$longitude',
+      'https://www.google.com/maps/dir/?api=1&destination=$latitude,$longitude&travelmode=two_wheeler',
     );
 
     try {
